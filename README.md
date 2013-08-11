@@ -80,6 +80,37 @@ We would use the following directive:
 	border-image: url(themes/Theme1/img/button.png);
 
 
+#### OS-Specific Theme Files
+
+QtDynamicThemer supports OS-specific theme files that are loaded *in addition* to the requested file.  To create an OS-specific CSS file, add a suffix to
+the name of the file, before '.css', for example:
+
+	themes/
+	|
+	\----- Theme1/
+		|
+		\----- main.css
+		\----- main_win.css
+		\----- foo.css
+		\----- theme.ini
+		\----- img/
+			|
+			\----- button.png
+
+The following extensions are supported:
+
+* Windows
+	* _win
+* OSX
+	* _osx
+* Linux
+	* _linux
+* Embedded Linux (Qt 4.x only)
+	* _elinux
+
+
+## Coding with QtDynamicThemer
+
 ### Using Themes in Short-Lived Widgets
 
 For short-lived widgets, such as dialogs, we'll only set the theme at widget construction time, and won't need to do anything special outside
@@ -114,6 +145,11 @@ the theme changes, and a static re-polish method is provided:
 	    setStyleSheet(SingleThemer::getStyleSheet("longwidget"));
 	    Themer::rePolish(this);
 	}
+
+### Refresh Theme List
+
+To refresh the theme list, simply call `themePath(QString)` with the theme path again to refresh the list of themes.
+
 
 ## Author, Copyright and License
 
